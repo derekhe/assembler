@@ -3,13 +3,20 @@ version: 0.0.0
 type: app
 targets:
   - plcsim
-  - llvm
 variables:
   APAX_BUILD_ARGS:
     - "--debug" # Generate debug information for target "1500"
 devDependencies:
-  "@ax/sdk": 5.1.1
+  "@ax/sdk": latest
 installStrategy: strict
-apaxVersion: 3.0.0
+apaxVersion: 3.2.0-20231220-080834-53525e2
 dependencies:
   "@ax/simatic-1500": ^5.0.10
+  "@ax/simatic-1500-hardware-utilities": latest
+
+registries:
+  "@ax": "https://registry.dev.simatic-ax.siemens.io/"
+
+scripts:
+  download: "apax build && apax sld load --target 192.168.0.1 --input bin/plcsim
+    --restart --accept-security-disclaimer"
